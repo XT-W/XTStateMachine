@@ -8,11 +8,11 @@ XTStateMachine提供了简单的状态机能力，实现了如下的状态机动
 
 ## 使用方法
 XTStateMachine的使用方法类似[spring-statemachine](http://projects.spring.io/spring-statemachine/)，状态的转移依赖于事件触发。事件、起始状态、结束状态的关系通过transition来链接。初始化时，使用addTransition添加转移映射
-```
+``` objective-c
 - (void)addTransition:(XTStateMachineTransition *)transition;
 ```
 transition的定义如下，包含事件，起始状态，结束状态，动作。其中【输入动作】包含在transition的action里
-```
+``` objective-c
 @interface XTStateMachineTransition : NSObject
 /**
  起始状态，可以多状态
@@ -32,11 +32,11 @@ transition的定义如下，包含事件，起始状态，结束状态，动作�
 @property (nonatomic, strong) XTStateMachineAction action;
 ```
 当事件发生时，外部调用方使用sendEvent来通知状态机变更状态
-```
+``` objective-c
 - (void)sendEvent:(XTStateMachineEvent)event;
 ```
 如果需要得到状态转移的回调，可以实现XTStateMachineDelegate协议，对应【转移动作】
-```
+``` objective-c
 @protocol XTStateMachineDelegate <NSObject>
 - (void)stateDidChangedFrom:(XTStateMachineState)from To:(XTStateMachineState)to;
 @end
@@ -163,5 +163,3 @@ loop执行过程中输出一下信息
 2018-08-15 15:04:46.823431+0800 StateMachine[46238:52523967] 起飞
 2018-08-15 15:04:47.193720+0800 StateMachine[46238:52523967] 发生故障，火箭坠毁
 ```
-
-完整demo已上传至附件
